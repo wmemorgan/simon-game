@@ -20,33 +20,72 @@ html, body {
   width: 255px;
   height: 255px;
   border: 1px solid black;
+  padding: 5px;
   display: grid;
   grid-template-columns: repeat(3 1fr);
   justify-content: space-evenly;
   align-content: center;
+  align-items: center;
   text-align: center;
 
 }
 
 .heading {
+  margin: auto;
+  padding: 5px;
   grid-column: 1 / span 3;
-}
-
-.menu-option {
-  grid-column: span 1;
-  width: 85px;
-  height: 85px;
-  display: grid;
-  grid-template-columns: 1fr;
   border: 1px solid black;
 }
 
+.menu-option {
+  border: 1px solid black;
+}
+
+#harsh-indicator {
+  grid-column: 3 / span 1;
+  margin: 0%;
+  width: 10px;
+  height: 10px;  
+  border-radius: 50%;
+  justify-self: center;
+}
+
+#count-display {
+  width: 60px;
+  height: 30px;
+  line-height: 30px; 
+  border-radius: 10px;
+  justify-self: center;
+}
+
+#start-btn {
+  width: 20px;
+  height: 20px;  
+  border-radius: 50%;
+  justify-self: center;
+}
+
+#harsh-btn {
+  width: 20px;
+  height: 20px;  
+  border-radius: 50%;
+  justify-self: center;
+}
+
 .power-switch {
+  width: 66%;
   margin: auto;
-  width: 150px;
-  
+  padding: 10px;
+  border: 1px solid black;
   grid-column: 1 / span 3;
   display: grid;
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(4, 1fr);
+
 }
+
+#power-btn {
+  grid-column: 2 / span 2;
+  background: linear-gradient(to right,  blue 50%,black 50%); /* W3C */
+}
+
 
