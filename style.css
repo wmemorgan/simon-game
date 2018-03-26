@@ -1,0 +1,42 @@
+html, body {
+  min-width: 550px;
+  height: 100%;
+  display: grid;
+  border: 1px solid black;
+}
+
+#game-board {
+  margin: auto;
+  width: 500px;
+  height: 500px;
+  display: grid;
+}
+
+#game-menu {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border: 1px solid black;
+  display: grid;
+  grid-template-columns: repeat(3 1fr);
+}
+
+.heading {
+  grid-column: 1 / span 3;
+}
+
+.menu-option {
+  grid-column: span 1;
+  width: 75px;
+  height: 75px;
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.power-switch {
+  width: 150px;
+  grid-column: 1 / span 3;
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+}
+
