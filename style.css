@@ -2,13 +2,14 @@ html, body {
   min-width: 550px;
   height: 100%;
   display: grid;
-  border: 1px solid black;
+  
 }
 
 #game-board {
-  margin: auto;
   width: 500px;
   height: 500px;
+  margin: auto;
+  border: 1px solid black;
   display: grid;
   justify-content: space-evenly;
   align-content: center;
@@ -19,39 +20,51 @@ html, body {
   /* margin: auto; */
   width: 255px;
   height: 255px;
-  border: 1px solid black;
-  padding: 5px;
+  border-radius: 50%;
+  border: 15px solid #333333;
+  /* padding: 5px; */
   display: grid;
   grid-template-columns: repeat(3 1fr);
-  justify-content: space-evenly;
+  /* justify-content: space-evenly; */
+  /* justify-content: stretch; */
   align-content: center;
-  align-items: center;
+  align-items: center; 
   text-align: center;
 
 }
 
 .heading {
+  font-size: 4em;
   margin: auto;
-  padding: 5px;
+  padding-bottom: 2px;
   grid-column: 1 / span 3;
-  border: 1px solid black;
+  /* border: 1px solid black; */
+}
+
+sup {
+  font-size: 10pt;
 }
 
 .menu-option {
-  border: 1px solid black;
+  border: 5px solid #333333;
 }
 
-#harsh-indicator {
+#brutal-indicator {
+  background-color: black;
   grid-column: 3 / span 1;
   margin: 0%;
-  width: 10px;
-  height: 10px;  
+  width: 5px;
+  height: 5px;  
   border-radius: 50%;
   justify-self: center;
 }
 
 #count-display {
-  width: 60px;
+  color: #47000B;
+  font-size: 1.2em;
+  font-weight: bolder;
+  background-color: #360009;
+  width: 50px;
   height: 30px;
   line-height: 30px; 
   border-radius: 10px;
@@ -59,33 +72,56 @@ html, body {
 }
 
 #start-btn {
+  background-color: #FF0000;
   width: 20px;
   height: 20px;  
   border-radius: 50%;
   justify-self: center;
+  cursor: pointer;
 }
 
-#harsh-btn {
+#brutal-btn {
+  background-color: #FAFF00;
   width: 20px;
   height: 20px;  
   border-radius: 50%;
   justify-self: center;
+  cursor: pointer;
 }
 
 .power-switch {
-  width: 66%;
+  width: 50%;
   margin: auto;
-  padding: 10px;
-  border: 1px solid black;
+  padding: 5px;
   grid-column: 1 / span 3;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 5px;
+  justify-content: space-evenly;
 }
 
 #power-btn {
-  grid-column: 2 / span 2;
-  background: linear-gradient(to right,  blue 50%,black 50%); /* W3C */
+  /* grid-column: 2 / span 2; */
+  width: 100%;
+  /* align-self: auto; */
+  background: linear-gradient(to right,  #1F8EE0 50%,black 50%); /* W3C */
+  border: 2px solid black;
+  padding-left: 5px;
+  padding-right: 5px;
+  cursor: pointer;
 }
 
+/* .power-label {
+  padding:0px 10px 0px 10px;
+  text-align: right;
+} */
 
+#off-label {
+text-align: right;
+/* padding-right: 5px; */
+}
+
+#on-label {
+text-align: center;
+/* padding-left: 20px; */
+}
