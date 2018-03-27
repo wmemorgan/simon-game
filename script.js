@@ -45,6 +45,23 @@ const seqInput = (arr, index) => {
   }
 }
 
+const lightUp = (event, element, index) => {
+  return () => {
+    var lightColorsArr = ["liteGreen", "liteRed", "liteYell", "liteBlue"];
+    if (powerOff === 0) {
+      element.removeEventListener(event, lightUp(event, element, index));
+    } else {
+      if (event === "mousedown") {
+        element.classList.add(lightColorsArr[index]);
+      } else if (event === "mouseup") {
+        setTimeout(element.classList.remove(lightColorsArr[index]), 6000);
+      }
+    }
+  }
+}
+
+
+
 const compareArrays = (arr1, arr2) => {
   if(JSON.stringify(arr1) === JSON.stringify(arr2)) {
     console.log('They are equal!');
@@ -92,6 +109,8 @@ const togglePower = () => {
 
     for (let i = 0; i < lens.length; i++) {
       lens[i].addEventListener("click", seqInput(playerSeq, i));
+      lens[i].addEventListener("mousedown", lightUp("mousedown", lens[i], i));
+      lens[i].addEventListener("mouseup", lightUp("mouseup", lens[i], i));
     }
 
     startButton.addEventListener("click", startGame);
@@ -110,12 +129,6 @@ const togglePower = () => {
 
 }
  
-// const toggleGlow = (i) => {
-//   return () => {
-//     lens[i].classList.add('glow');
-//     setInterval(toggleGlow(i), 3000);
-//   }
-// }
 
 powerButton.addEventListener("click", togglePower);
 

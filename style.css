@@ -29,25 +29,37 @@ html, body {
 }
 
 #green {
-  background-color: green;
+  background-color: rgb(0, 127, 0);
   border-radius: 210px 0 0 0;
   border-bottom: 5px;
 }
+.liteGreen#green {
+    background-color: #86f999;
+}
 
 #red {
-  background-color: red;
+  background-color: rgb(255, 0, 0);
   border-radius: 0 210px 0 0;
   border-bottom: 5px;
 }
+.liteRed#red {
+    background-color: #f9868a;
+}
 
 #yellow {
-  background-color: yellow;
+  background-color: rgb(255, 255, 0);
   border-radius: 0 0 0 210px;
+}
+.liteYell#yellow {
+    background-color: #e4e4bc;
 }
 
 #blue {
-  background-color: blue;
+  background-color: rgb(0, 0, 255);
   border-radius: 0 0 210px 0;
+}
+.liteBlue#blue {
+    background-color: #4360ee;
 }
 
 #game-menu {
@@ -98,6 +110,7 @@ sup {
 }
 
 #count-display {
+  /* color: rgb(230, 81, 104); */
   color: #47000B;
   font-size: 1.2em;
   font-weight: bolder;
@@ -229,10 +242,7 @@ text-align: center;
   }
 
   #count-display {
-    color: #47000B;
     font-size: 0.6em;
-    font-weight: bolder;
-    background-color: #360009;
     width: 25px;
     height: 15px;
     line-height: 15px; 
