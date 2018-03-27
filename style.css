@@ -1,17 +1,19 @@
 html, body {
-  width: 100%;
+  /* width: 100%; */
   height: 100%;
   display: grid;
 }
 
 #game-board {
+  position: relative;
   width: 500px;
   height: 500px;
   margin: auto;
   /* margin-top: 50px; */
-  border-radius: 50%;
+  border: 3px solid black;
+  /* border-radius: 50%; */
   display: grid;
-  grid-template-columns: repeat(2, 190px);
+  grid-template-columns: repeat(2, 200px);
   grid-gap: 0px;
   justify-content: center;
   align-content: center;
@@ -19,21 +21,23 @@ html, body {
 }
 
 .lens {
-  height: 195px;
-  width: 195px;
+  height: 200px;
+  width: 200px;
   border: 15px solid #333333;
   cursor: pointer;
-  z-index: 8;
+  z-index: 1;
 }
 
 #green {
   background-color: green;
   border-radius: 210px 0 0 0;
+  border-bottom: 5px;
 }
 
 #red {
   background-color: red;
   border-radius: 0 210px 0 0;
+  border-bottom: 5px;
 }
 
 #yellow {
@@ -47,27 +51,24 @@ html, body {
 }
 
 #game-menu {
-  position: fixed;
+  position: absolute;
   top: 50%;
   left: 50%;
-  margin-top: -110px;
-  margin-left: -100px;
+  margin: -24.66% 0 0 -22.66%;
   background-color: white;
-  width: 225px;
-  height: 225px;
-  /* margin-left: 135px;
-  margin-top: 135px; */
+  width: 226px;
+  height: 226px;
   border-radius: 50%;
   border: 10px solid #333333;
-  /* padding: 5px; */
+  padding: 5px;
   display: grid;
-  grid-template-columns: repeat(3 1fr);
+  grid-template-columns: repeat(3 auto);
   /* justify-content: space-evenly; */
-  /* justify-content: stretch; */
+  justify-content: stretch;
   align-content: center;
   align-items: center; 
   text-align: center;
-  z-index: 10;
+  z-index: 2;
 }
 
 .heading {
@@ -161,4 +162,122 @@ text-align: right;
 #on-label {
 text-align: center;
 /* padding-left: 20px; */
+}
+
+@media (max-width: 450px) {
+  #game-board {
+    width: 300px;
+    height: 300px;
+    grid-template-columns: repeat(2, 100px);
+  }
+  .lens {
+    width: 100px;
+    height: 100px;
+    border: 10px solid #333333;
+  }
+
+  #green {
+    border-radius: 110px 0 0 0;
+  }
+  #red {
+    border-radius: 0 110px 0 0;
+  }
+  #yellow {
+    border-radius: 0 0 0 110px;
+  }
+  #blue {
+    border-radius: 0 0 110px 0;
+  }
+
+  #game-menu {
+    width: 113px;
+    height: 113px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -23.33% 0 0 -19.33%;
+  }
+
+  .heading {
+  font-size: 1.5em;
+  margin: auto;
+  padding-bottom: 1px;
+  grid-column: 1 / span 3;
+  /* border: 1px solid black; */
+}
+
+  sup {
+    font-size: 8pt;
+  }
+
+  .menu-option {
+    border: 5px solid #333333;
+  }
+
+  .menu-label, .power-label {
+    font-size: 0.6em;
+  }
+
+  #brutal-indicator {
+    background-color: black;
+    grid-column: 3 / span 1;
+    margin: 0%;
+    width: 1px;
+    height: 1px;  
+    border-radius: 50%;
+    justify-self: center;
+  }
+
+  #count-display {
+    color: #47000B;
+    font-size: 0.6em;
+    font-weight: bolder;
+    background-color: #360009;
+    width: 25px;
+    height: 15px;
+    line-height: 15px; 
+    border-radius: 10px;
+    justify-self: center;
+  }
+
+  #start-btn {
+    background-color: #FF0000;
+    width: 10px;
+    height: 10px;  
+    border-radius: 50%;
+    justify-self: center;
+    cursor: pointer;
+  }
+
+  #brutal-btn {
+    background-color: #FAFF00;
+    width: 10px;
+    height: 10px;  
+    border-radius: 50%;
+    justify-self: center;
+    cursor: pointer;
+  }
+
+  .power-switch {
+    width: 50%;
+    margin: auto;
+    padding: 5px;
+    grid-column: 1 / span 3;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+    justify-content: space-evenly;
+  }
+
+  #power-btn {
+    /* grid-column: 2 / span 2; */
+    width: 100%;
+    /* align-self: auto; */
+    background: linear-gradient(to right,  #1F8EE0 50%,black 50%); /* W3C */
+    border: 5px solid black;
+    padding-left: 5px;
+    padding-right: 5px;
+    cursor: pointer;
+  }
+
 }
