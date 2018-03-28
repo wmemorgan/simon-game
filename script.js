@@ -155,31 +155,31 @@ const togglePower = () => {
 
     startButton.addEventListener("click", startGame);
 
-    } else if (powerOff === 1) {
-    resetArray(aiSeq);
-    resetArray(playerSeq);
-    powerButton.style.background = "linear-gradient(to right, #1F8EE0 50%, black 50%)";
-    countDisplay.style.color = "#47000B";
-    countDisplay.innerHTML = "- -";
-    console.log("Power off");
-    powerOff = 0;
+  } else if (powerOff === 1) {
+      resetArray(aiSeq);
+      resetArray(playerSeq);
+      powerButton.style.background = "linear-gradient(to right, #1F8EE0 50%, black 50%)";
+      countDisplay.style.color = "#47000B";
+      countDisplay.innerHTML = "- -";
+      console.log("Power off");
+      powerOff = 0;
 
-    green.removeEventListener("click", seqInputGreen);
-    red.removeEventListener("click", seqInputRed);
-    yellow.removeEventListener("click", seqInputYellow);
-    blue.removeEventListener("click", seqInputBlue);
+      green.removeEventListener("click", seqInputGreen);
+      red.removeEventListener("click", seqInputRed);
+      yellow.removeEventListener("click", seqInputYellow);
+      blue.removeEventListener("click", seqInputBlue);
 
-    green.removeEventListener("mousedown", greenLight1);
-    green.removeEventListener("mouseup", greenLight2);
-    red.removeEventListener("mousedown", redLight1);
-    red.removeEventListener("mouseup", redLight2);
-    yellow.removeEventListener("mousedown", yellowLight1);
-    yellow.removeEventListener("mouseup", yellowLight2);
-    blue.removeEventListener("mousedown", blueLight1);
-    blue.removeEventListener("mouseup", blueLight2);
+      green.removeEventListener("mousedown", greenLight1);
+      green.removeEventListener("mouseup", greenLight2);
+      red.removeEventListener("mousedown", redLight1);
+      red.removeEventListener("mouseup", redLight2);
+      yellow.removeEventListener("mousedown", yellowLight1);
+      yellow.removeEventListener("mouseup", yellowLight2);
+      blue.removeEventListener("mousedown", blueLight1);
+      blue.removeEventListener("mouseup", blueLight2);
 
-    startButton.removeEventListener("click", startGame);
-  }
+      startButton.removeEventListener("click", startGame);
+    }
 }
  
 powerButton.addEventListener("click", togglePower);
