@@ -26,22 +26,32 @@ const randomNumGenerator = (max=4) => {
 }
 
 const createSequence = (arr) => {
-  // return new Promise (resolve => {
+  return new Promise (resolve => {
     arr.push(randomNumGenerator());
     console.log("Random generated array is:", arr);
-  // })
+  });
+  // (reject => {console.log("I'm afraid I can't do that.")});
 }
 
 const seqInput = (arr, index) => {
-  return () => {
-    if (powerOff === 0) {
-      lens[index].removeEventListener("click", seqInput(arr, index));
-    } else {
-      console.log("The index is:", index);
-      arr.push(index);
-      console.log("The array is:", arr);
-      console.log("It's on!!!");
-    }
+  if (powerOff === 0) {
+    lens[index].removeEventListener("click", seqInput(arr, index));
+  }
+  
+ else {
+      // new Promise (resolve => {
+      //   console.log("The index is:", index);
+      //   arr.push(index);
+      //   console.log("The array is:", arr);
+      // });
+      // (reject => {console.log("I won't do that!")});
+      return () => {
+        const promise = new Promise((resolve, reject) => {
+          resolve(arr.push(index));
+          // reject(console.log("I won't do that!"));
+        });
+      }
+
   }
 }
 
@@ -63,13 +73,20 @@ const lightUp = (event, element, index) => {
 
 
 const compareArrays = (arr1, arr2) => {
-  if(JSON.stringify(arr1) === JSON.stringify(arr2)) {
-    console.log('They are equal!');
-    return true;
-  } else {
-    console.log('Not equal');
-    return false;
-  }
+  const promise = new Promise((resolve, reject) => {
+    if (JSON.stringify(arr1) === JSON.stringify(arr2)) {
+      resolve(console.log('They are equal!'));
+    } else {
+      reject(console.log('Not equal'));
+    }
+  });
+  // const promise = new Promise((resolve, reject) => {
+  //   if (true) {
+  //     resolve('Stuff Worked');
+  //   } else {
+  //     reject("Error, it doesn't work.")
+  //   }
+  // })
 }
 
 const resetArray = (arr) => {
