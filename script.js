@@ -1,7 +1,7 @@
 var aiSeq = [],
  playerSeq = [],
  level = 0,
- playCount = 0;
+ playCount = 0,
  powerOff = 0,
  timer,
  lens = document.getElementsByClassName('lens'),
