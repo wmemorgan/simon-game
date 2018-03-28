@@ -27,33 +27,34 @@ const randomNumGenerator = (max=4) => {
 
 const createSequence = (arr) => {
   return new Promise (resolve => {
-    arr.push(randomNumGenerator());
+    arr.push(3);
     console.log("Random generated array is:", arr);
+    return resolve;
   });
   // (reject => {console.log("I'm afraid I can't do that.")});
 }
 
-const seqInput = (arr, index) => {
-  return () => {
-    if (powerOff === 0) {
-      lens[index].removeEventListener("click", seqInput(arr, index));
-    } else {
-        // new Promise (resolve => {
-        //   console.log("The index is:", index);
-        //   arr.push(index);
-        //   console.log("The array is:", arr);
-        // });
-        // (reject => {console.log("I won't do that!")});
+// const seqInput = (arr, index) => {
+//   return () => {
+//     // if (powerOff === 0) {
+//     //   lens[index].removeEventListener("click", seqInput(arr, index));
+//     // } else {
+//         // new Promise (resolve => {
+//         //   console.log("The index is:", index);
+//         //   arr.push(index);
+//         //   console.log("The array is:", arr);
+//         // });
+//         // (reject => {console.log("I won't do that!")});
 
-          // const promise = Promise.resolve(addToArray(arr, index));
-            // reject(console.log("I won't do that!"));
-          const promise = Promise.resolve("Success").then(() => {
-              arr.push(index);
-              console.log("Player array is:", arr);
-          });
-      }
-    }
-}
+//           // const promise = Promise.resolve(addToArray(arr, index));
+//             // reject(console.log("I won't do that!"));
+//           // const promise = Promise.resolve("Success").then(() => {
+//               arr.push(index);
+//               console.log("Player array is:", arr);
+//           // });
+//       // }
+//     }
+// }
 
 // const addToArray = (arr, index) => {
 //   arr.push(index);
@@ -98,15 +99,20 @@ const resetArray = (arr) => {
   arr.length = 0;
 }
 
-const timer = () => {
-  // return new Promise(resolve => {
-    setTimeout(() => {
-      console.log("Time's up!");
-      return true;
-    }
-      , 6000);
-  // })
-}
+// const timer = () => {
+  // // return new Promise(resolve => {
+  //   setTimeout(() => {
+  //     console.log("Time's up!");
+  //     return true;
+  //   }
+  //     , 6000);
+  // // })
+  function timer(t, v) {
+    return new Promise(function (resolve) {
+      setTimeout(resolve.bind(null, v), t)
+    });
+  }
+// }
 
 const timeUp = (eval) => {
   if (eval) {
@@ -116,9 +122,33 @@ const timeUp = (eval) => {
   }
 }
 
+// createSequence(aiSeq).prototype.timer = function (t) {
+//   return this.then(function (v) {
+//     return delay(t, v);
+//   });
+// }
+var myVar;
+function alertFunc() {
+  console.log("Wild about Harry!");
+  compareArrays(aiSeq, playerSeq);
+}
+
+function myFunction() {
+  myVar = setTimeout(alertFunc, 3000);
+}
+
 const startGame = () => {
   console.log("Starting game....")
   createSequence(aiSeq);
+  // myFunction();
+
+}
+
+const seqInput = (arr, num) => {
+    return () => {
+      arr.push(num);
+      console.log("Player array is:", arr);
+    }
 }
 
 const togglePower = () => {
@@ -129,15 +159,38 @@ const togglePower = () => {
     console.log("Power on");
     powerOff = 1;
 
-    for (let i = 0; i < lens.length; i++) {
-      lens[i].addEventListener("click", seqInput(playerSeq, i));
-      lens[i].addEventListener("mousedown", lightUp("mousedown", lens[i], i));
-      lens[i].addEventListener("mouseup", lightUp("mouseup", lens[i], i));
-    }
+    // Initialize player input functions based on button pressed
+    seqInputGreen = seqInput(playerSeq, 0);
+    seqInputRed = seqInput(playerSeq, 1);
+    seqInputYellow = seqInput(playerSeq, 2);
+    seqInputBlue = seqInput(playerSeq, 3);
+    greenLight1 = lightUp("mousedown", green, 0);
+    greenLight2 = lightUp("mouseup", green, 0);
+    redLight1 = lightUp("mousedown", red, 1);
+    redLight2 = lightUp("mouseup", red, 1);
+    yellowLight1 = lightUp("mousedown", yellow, 2);
+    yellowLight2 = lightUp("mouseup", yellow, 2);
+    blueLight1 = lightUp("mousedown", blue, 3);
+    blueLight2 = lightUp("mouseup", blue, 3);
+
+
+    green.addEventListener("click", seqInputGreen);    
+    red.addEventListener("click", seqInputRed);
+    yellow.addEventListener("click", seqInputYellow);
+    blue.addEventListener("click", seqInputBlue);
+
+    green.addEventListener("mousedown", greenLight1);
+    green.addEventListener("mouseup", greenLight2);
+    red.addEventListener("mousedown", redLight1);
+    red.addEventListener("mouseup", redLight2);
+    yellow.addEventListener("mousedown", yellowLight1);
+    yellow.addEventListener("mouseup", yellowLight2);
+    blue.addEventListener("mousedown", blueLight1);
+    blue.addEventListener("mouseup", blueLight2);
 
     startButton.addEventListener("click", startGame);
 
-  } else if (powerOff === 1) {
+    } else if (powerOff === 1) {
     resetArray(aiSeq);
     resetArray(playerSeq);
     powerButton.style.background = "linear-gradient(to right, #1F8EE0 50%, black 50%)";
@@ -146,11 +199,23 @@ const togglePower = () => {
     console.log("Power off");
     powerOff = 0;
 
+    green.removeEventListener("click", seqInputGreen);
+    red.removeEventListener("click", seqInputRed);
+    yellow.removeEventListener("click", seqInputYellow);
+    blue.removeEventListener("click", seqInputBlue);
+
+    green.removeEventListener("mousedown", greenLight1);
+    green.removeEventListener("mouseup", greenLight2);
+    red.removeEventListener("mousedown", redLight1);
+    red.removeEventListener("mouseup", redLight2);
+    yellow.removeEventListener("mousedown", yellowLight1);
+    yellow.removeEventListener("mouseup", yellowLight2);
+    blue.removeEventListener("mousedown", blueLight1);
+    blue.removeEventListener("mouseup", blueLight2);
+
     startButton.removeEventListener("click", startGame);
   }
-
 }
  
-
 powerButton.addEventListener("click", togglePower);
 
