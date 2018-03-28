@@ -130,13 +130,13 @@ const gamePlay = () => {
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
     timer = setTimeout(compareArrays, 3000);
-    // for (let i = 0; i < lens.length; i++) {
-      
-    // }
-    window.onclick = function() {
-      timer && clearTimeout(timer);
-      timer = setTimeout(compareArrays, 3000);
+    for (let i = 0; i < lens.length; i++) {
+      lens[i].onclick = function () {
+        timer && clearTimeout(timer);
+        timer = setTimeout(compareArrays, 3000);
+      }
     }
+
   } 
 }
 
