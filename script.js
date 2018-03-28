@@ -34,26 +34,31 @@ const createSequence = (arr) => {
 }
 
 const seqInput = (arr, index) => {
-  if (powerOff === 0) {
-    lens[index].removeEventListener("click", seqInput(arr, index));
-  }
-  
- else {
-      // new Promise (resolve => {
-      //   console.log("The index is:", index);
-      //   arr.push(index);
-      //   console.log("The array is:", arr);
-      // });
-      // (reject => {console.log("I won't do that!")});
-      return () => {
-        const promise = new Promise((resolve, reject) => {
-          resolve(arr.push(index));
-          // reject(console.log("I won't do that!"));
-        });
-      }
+  return () => {
+    if (powerOff === 0) {
+      lens[index].removeEventListener("click", seqInput(arr, index));
+    } else {
+        // new Promise (resolve => {
+        //   console.log("The index is:", index);
+        //   arr.push(index);
+        //   console.log("The array is:", arr);
+        // });
+        // (reject => {console.log("I won't do that!")});
 
-  }
+          // const promise = Promise.resolve(addToArray(arr, index));
+            // reject(console.log("I won't do that!"));
+          const promise = Promise.resolve("Success").then(() => {
+              arr.push(index);
+              console.log("Player array is:", arr);
+          });
+      }
+    }
 }
+
+// const addToArray = (arr, index) => {
+//   arr.push(index);
+//   console.log("Player array is:", arr);
+// }
 
 const lightUp = (event, element, index) => {
   return () => {
