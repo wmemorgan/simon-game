@@ -2,6 +2,7 @@ var aiSeq = [],
  playerSeq = [],
  level = 0,
  playCount,
+ gameLimit = 5,
  powerOff = 0,
  timer,
  lens = document.getElementsByClassName('lens'),
@@ -85,8 +86,8 @@ const compareArrays = () => {
       createSequence(aiSeq);
       resolve(console.log('They are equal!'));
     } else {
-      reject(console.log('Not equal'));
-      
+      console.log('Not equal')
+      reject(console.log("Let's try again, Simon says:", aiSeq));
     }
     gamePlay();
   });
@@ -109,15 +110,28 @@ const startGame = () => {
   createSequence(aiSeq);
   gamePlay();
 }
-
+function startTimeout() {
+  timer = setTimeout(compareArrays, 6000);
+}
 const gamePlay = () => {
-  if (playCount < 5) {
+  if (powerOff === 0) {
+    console.log("I'm sleeping...");
+    return false;
+  } else if (playCount === gameLimit) {
+    console.log("Game over, man!");
+    return true;
+  } else {
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
-    timer = setTimeout(compareArrays, 6000);
-  } else {
-    console.log("Game over, man!")
-  }
+    timer = setTimeout(compareArrays, 3000);
+    // for (let i = 0; i < lens.length; i++) {
+      
+    // }
+    window.onclick = function() {
+      timer && clearTimeout(timer);
+      timer = setTimeout(compareArrays, 3000);
+    }
+  } 
 }
 
 const seqInput = (arr, num) => {
@@ -129,11 +143,11 @@ const seqInput = (arr, num) => {
 
 const togglePower = () => {
   if (powerOff === 0) {
-    playCount = 0;
     powerButton.style.background = "linear-gradient(to right, black 50%, #1F8EE0 50%)";
     countDisplay.style.color = "rgb(230, 81, 104)";
     countDisplay.innerHTML = "00";
     console.log("Power on");
+    playCount = 0;
     powerOff = 1;
 
     // Initialize player input functions based on button pressed
