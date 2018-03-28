@@ -1,7 +1,7 @@
 var aiSeq = [],
  playerSeq = [],
  level = 0,
- playCount = 0,
+ playCount,
  powerOff = 0,
  timer,
  lens = document.getElementsByClassName('lens'),
@@ -82,11 +82,13 @@ const compareArrays = () => {
   const promise = new Promise((resolve, reject) => {
     if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
       playCount++;
+      createSequence(aiSeq);
       resolve(console.log('They are equal!'));
     } else {
       reject(console.log('Not equal'));
-      resetArray(playerSeq);
+      
     }
+    gamePlay();
   });
 }
 
@@ -105,8 +107,17 @@ const timeUp = (eval) => {
 const startGame = () => {
   console.log("Starting game....")
   createSequence(aiSeq);
-  timer = setTimeout(compareArrays, 6000);
+  gamePlay();
+}
 
+const gamePlay = () => {
+  if (playCount < 5) {
+    resetArray(playerSeq);
+    console.log("Simon says:", aiSeq);
+    timer = setTimeout(compareArrays, 6000);
+  } else {
+    console.log("Game over, man!")
+  }
 }
 
 const seqInput = (arr, num) => {
@@ -118,6 +129,7 @@ const seqInput = (arr, num) => {
 
 const togglePower = () => {
   if (powerOff === 0) {
+    playCount = 0;
     powerButton.style.background = "linear-gradient(to right, black 50%, #1F8EE0 50%)";
     countDisplay.style.color = "rgb(230, 81, 104)";
     countDisplay.innerHTML = "00";
