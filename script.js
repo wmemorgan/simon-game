@@ -15,6 +15,7 @@ var aiSeq = [],
  startButton = document.getElementById('start-btn'),
  brutalButton = document.getElementById('brutal-btn'),
  powerButton = document.getElementById('power-btn'),
+lightColorsArr = ["liteGreen", "liteRed", "liteYell", "liteBlue"];
  gameSounds = [
   "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3", //green 
   "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3", //red
@@ -30,7 +31,7 @@ const randomNumGenerator = (max=4) => {
 
 const createSequence = (arr) => {
   return new Promise (resolve => {
-    arr.push(3);
+    arr.push(randomNumGenerator());
     console.log("Random generated array is:", arr);
     return resolve;
   });
@@ -64,18 +65,33 @@ const createSequence = (arr) => {
 //   console.log("Player array is:", arr);
 // }
 
+
+
 const lightUp = (event, element, index) => {
   return () => {
-    var lightColorsArr = ["liteGreen", "liteRed", "liteYell", "liteBlue"];
     if (powerOff === 0) {
       element.removeEventListener(event, lightUp(event, element, index));
     } else {
       if (event === "mousedown") {
         element.classList.add(lightColorsArr[index]);
       } else if (event === "mouseup") {
-        setTimeout(element.classList.remove(lightColorsArr[index]), 6000);
+        let resetLight = () => element.classList.remove(lightColorsArr[index]);
+        setTimeout(resetLight, 100);
       }
     }
+  }
+}
+
+const blink = (element, index) => {
+  element.classList.add(lightColorsArr[index]);
+  let resetLight = () => element.classList.remove(lightColorsArr[index]);
+  setTimeout(resetLight, 300);
+}
+
+const flashing = (arr, element) => {
+  for (let value of arr) {
+    let flash = () => blink(element[value], value);
+    setTimeout(flash, 3000);
   }
 }
 
