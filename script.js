@@ -1,7 +1,9 @@
 var aiSeq = [],
  playerSeq = [],
  level = 0,
+ playCount = 0;
  powerOff = 0,
+ timer,
  lens = document.getElementsByClassName('lens'),
  green = document.getElementById('green'),
  red = document.getElementById('red'),
@@ -78,12 +80,14 @@ const lightUp = (event, element, index) => {
 
 
 
-const compareArrays = (arr1, arr2) => {
+const compareArrays = () => {
   const promise = new Promise((resolve, reject) => {
-    if (JSON.stringify(arr1) === JSON.stringify(arr2)) {
+    if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
+      playCount++;
       resolve(console.log('They are equal!'));
     } else {
       reject(console.log('Not equal'));
+      resetArray(playerSeq);
     }
   });
   // const promise = new Promise((resolve, reject) => {
@@ -93,6 +97,7 @@ const compareArrays = (arr1, arr2) => {
   //     reject("Error, it doesn't work.")
   //   }
   // })
+
 }
 
 const resetArray = (arr) => {
@@ -107,11 +112,6 @@ const resetArray = (arr) => {
   //   }
   //     , 6000);
   // // })
-  function timer(t, v) {
-    return new Promise(function (resolve) {
-      setTimeout(resolve.bind(null, v), t)
-    });
-  }
 // }
 
 const timeUp = (eval) => {
@@ -128,19 +128,15 @@ const timeUp = (eval) => {
 //   });
 // }
 var myVar;
-function alertFunc() {
-  console.log("Wild about Harry!");
-  compareArrays(aiSeq, playerSeq);
-}
 
 function myFunction() {
-  myVar = setTimeout(alertFunc, 3000);
+  myVar = setTimeout(compareArrays, 6000);
 }
 
 const startGame = () => {
   console.log("Starting game....")
   createSequence(aiSeq);
-  // myFunction();
+  timer = setTimeout(compareArrays, 6000);
 
 }
 
