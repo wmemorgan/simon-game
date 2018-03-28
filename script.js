@@ -80,17 +80,23 @@ const lightUp = (event, element, index) => {
 }
 
 const compareArrays = () => {
-  const promise = new Promise((resolve, reject) => {
-    if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
-      playCount++;
-      createSequence(aiSeq);
-      resolve(console.log('They are equal!'));
-    } else {
-      console.log('Not equal')
-      reject(console.log("Let's try again, Simon says:", aiSeq));
-    }
-    gamePlay();
-  });
+  if (playCount === gameLimit) {
+    console.log("No more games");
+    return false;
+  } else {
+    const promise = new Promise((resolve, reject) => {
+      if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
+        playCount++;
+        createSequence(aiSeq);
+        resolve(console.log('They are equal!'));
+      } else {
+        console.log('Not equal')
+        reject(console.log("Let's try again, Simon says:", aiSeq));
+      }
+      gamePlay();
+    });
+  }
+
 }
 
 const resetArray = (arr) => {
@@ -107,12 +113,11 @@ const timeUp = (eval) => {
 
 const startGame = () => {
   console.log("Starting game....")
+  // var startUp = setTimeout()
   createSequence(aiSeq);
   gamePlay();
 }
-function startTimeout() {
-  timer = setTimeout(compareArrays, 6000);
-}
+
 const gamePlay = () => {
   if (powerOff === 0) {
     console.log("I'm sleeping...");
@@ -121,6 +126,7 @@ const gamePlay = () => {
     console.log("Game over, man!");
     return true;
   } else {
+    countDisplay.innerHTML = aiSeq.length;
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
     timer = setTimeout(compareArrays, 3000);
@@ -145,7 +151,7 @@ const togglePower = () => {
   if (powerOff === 0) {
     powerButton.style.background = "linear-gradient(to right, black 50%, #1F8EE0 50%)";
     countDisplay.style.color = "rgb(230, 81, 104)";
-    countDisplay.innerHTML = "00";
+    countDisplay.innerHTML = "- -";
     console.log("Power on");
     playCount = 0;
     powerOff = 1;
