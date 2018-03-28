@@ -78,8 +78,6 @@ const lightUp = (event, element, index) => {
   }
 }
 
-
-
 const compareArrays = () => {
   const promise = new Promise((resolve, reject) => {
     if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
@@ -90,29 +88,11 @@ const compareArrays = () => {
       resetArray(playerSeq);
     }
   });
-  // const promise = new Promise((resolve, reject) => {
-  //   if (true) {
-  //     resolve('Stuff Worked');
-  //   } else {
-  //     reject("Error, it doesn't work.")
-  //   }
-  // })
-
 }
 
 const resetArray = (arr) => {
   arr.length = 0;
 }
-
-// const timer = () => {
-  // // return new Promise(resolve => {
-  //   setTimeout(() => {
-  //     console.log("Time's up!");
-  //     return true;
-  //   }
-  //     , 6000);
-  // // })
-// }
 
 const timeUp = (eval) => {
   if (eval) {
@@ -120,17 +100,6 @@ const timeUp = (eval) => {
   } else {
     console.log('Ran out of time do over...');
   }
-}
-
-// createSequence(aiSeq).prototype.timer = function (t) {
-//   return this.then(function (v) {
-//     return delay(t, v);
-//   });
-// }
-var myVar;
-
-function myFunction() {
-  myVar = setTimeout(compareArrays, 6000);
 }
 
 const startGame = () => {
