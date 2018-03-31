@@ -30,13 +30,23 @@ const randomNumGenerator = (max=4) => {
 }
 
 const createSequence = (arr) => {
-  return new Promise (resolve => {
-    arr.push(randomNumGenerator());
-    console.log("Random generated array is:", arr);
-    return resolve;
-  });
-  // (reject => {console.log("I'm afraid I can't do that.")});
+  if (playCount === gameLimit) {
+    console.log("Game over, man!");
+    return true;
+  } else {
+    // return new Promise (resolve => {
+      // setTimeout(() => {
+      arr.push(randomNumGenerator());
+      // arr.push(0, 2, 1)
+      // flashing(aiSeq, lens);
+      console.log("Random generated array is:", arr);
+      // }, 500);
+    //   return resolve;
+    // });
+    // (reject => {console.log("I'm afraid I can't do that.")});
+    }
 }
+
 
 // const seqInput = (arr, index) => {
 //   return () => {
@@ -85,32 +95,46 @@ const lightUp = (event, element, index) => {
 const blink = (element, index) => {
   element.classList.add(lightColorsArr[index]);
   let resetLight = () => element.classList.remove(lightColorsArr[index]);
-  setTimeout(resetLight, 300);
+  setTimeout(resetLight, 500);
 }
 
 const flashing = (arr, element) => {
-  for (let value of arr) {
-    let flash = () => blink(element[value], value);
-    setTimeout(flash, 3000);
-  }
+  let value = 0;
+  const myInterval = setInterval(() => {
+    id = arr[value];
+    // console.log("Assign to id:", id);
+    blink(element[id], id);
+    value++;
+    // console.log("Value amount is:", value)
+    if (value === arr.length) {
+      clearInterval(myInterval);
+    }
+  }, 1000)
 }
 
 const compareArrays = () => {
-  if (playCount === gameLimit) {
+  if (powerOff === 0) {
+    console.log("Go away, I'm sleeping...");
+    return false;
+  }
+  else if (playCount === gameLimit) {
     console.log("No more games");
     return false;
   } else {
-    const promise = new Promise((resolve, reject) => {
+    // const promise = new Promise((resolve, reject) => {
       if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
         playCount++;
         createSequence(aiSeq);
-        resolve(console.log('They are equal!'));
+        flashing(aiSeq, lens);
+        // resolve(console.log('They are equal!'));
       } else {
         console.log('Not equal')
-        reject(console.log("Let's try again, Simon says:", aiSeq));
+        console.log("Let's try again, Simon says:", aiSeq);
+        flashing(aiSeq, lens);
+        // reject(console.log("Let's try again, Simon says:", aiSeq));
       }
       gamePlay();
-    });
+    // });
   }
 
 }
