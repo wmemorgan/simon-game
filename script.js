@@ -120,7 +120,7 @@ const compareArrays = () => {
   else if (playCount === gameLimit) {
     console.log("No more games");
     return false;
-  } else {
+  } else if (aiSeq.length === playerSeq.length) {
     // const promise = new Promise((resolve, reject) => {
       if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
         playCount++;
@@ -169,13 +169,14 @@ const gamePlay = () => {
     countDisplay.innerHTML = aiSeq.length;
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
-    timer = setTimeout(compareArrays, 3000);
-    for (let i = 0; i < lens.length; i++) {
-      lens[i].onclick = function () {
-        timer && clearTimeout(timer);
-        timer = setTimeout(compareArrays, 3000);
-      }
-    }
+    // timer = setTimeout(compareArrays, 100000000);
+    // for (let i = 0; i < lens.length; i++) {
+    //   lens[i].onclick = function () {
+    //     timer && clearTimeout(timer);
+    //     timer = setTimeout(compareArrays, 3000);
+    //   }
+    // }
+    compareArrays();
 
   } 
 }
@@ -184,6 +185,7 @@ const seqInput = (arr, num) => {
     return () => {
       arr.push(num);
       console.log("Player array is:", arr);
+      compareArrays();
     }
 }
 
