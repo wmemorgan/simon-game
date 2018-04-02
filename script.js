@@ -15,15 +15,14 @@ var aiSeq = [],
  startButton = document.getElementById('start-btn'),
  brutalButton = document.getElementById('brutal-btn'),
  powerButton = document.getElementById('power-btn'),
-lightColorsArr = ["liteGreen", "liteRed", "liteYell", "liteBlue"];
+ colorArr = ["green", "red", "yellow", "blue"],
+ lightColorsArr = ["liteGreen", "liteRed", "liteYell", "liteBlue"],
  gameSounds = [
   "https://s3.amazonaws.com/freecodecamp/simonSound1.mp3", //green 
   "https://s3.amazonaws.com/freecodecamp/simonSound2.mp3", //red
   "https://s3.amazonaws.com/freecodecamp/simonSound3.mp3", //yellow
   "https://s3.amazonaws.com/freecodecamp/simonSound4.mp3" //blue
  ];
-
-
 
 const randomNumGenerator = (max=4) => {
   return Math.floor(Math.random() * Math.floor(max));
@@ -110,6 +109,10 @@ const flashing = (arr, element) => {
       clearInterval(myInterval);
     }
   }, 1000)
+}
+
+const playSound = () => {
+  
 }
 
 const compareArrays = () => {
