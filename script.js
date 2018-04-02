@@ -98,15 +98,29 @@ const blink = (element, index) => {
   setTimeout(resetLight, 1000);
 }
 
-const blinkDisplay = () => {
+const displayMessage = (message) => {
   countDisplay.style.color = "#47000B";
-  let resetLight = () => countDisplay.style.color = "rgb(230, 81, 104)";
-  setTimeout(resetLight, 1000);
+  let resetLight = () => {
+    countDisplay.innerHTML = message;
+    countDisplay.style.color = "rgb(230, 81, 104)";
+  }
+  setTimeout(resetLight, 400);
+}
+
+const gameWon = () => {
+  displayMessage("WIN!");
+  for (let i = 0; i < lens.length; i++) {
+    blink(lens[i], i);
+    playSound(gameSounds[i]);
+  }
+
 }
 
 const flashing = (arr, element) => {
+  
   let value = 0;
   const myInterval = setInterval(() => {
+    countDisplay.innerHTML = aiSeq.length;
     id = arr[value];
     // console.log("Assign to id:", id);
     blink(element[id], id);
@@ -140,6 +154,7 @@ const compareArrays = () => {
     && aiSeq.length === playerSeq.length 
     && JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
       console.log("Winner, winner, chicken dinner!");
+      gameWon();
       return;
     }
   // else if (playCount === gameLimit) {
@@ -156,7 +171,9 @@ const compareArrays = () => {
       } else {
         console.log('Not equal')
         console.log("Let's try again, Simon says:", aiSeq);
+        displayMessage("Err");;
         flashing(aiSeq, lens);
+        
         // reject(console.log("Let's try again, Simon says:", aiSeq));
       }
       gamePlay();
