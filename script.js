@@ -83,6 +83,7 @@ const lightUp = (event, element, index) => {
     } else {
       if (event === "mousedown") {
         element.classList.add(lightColorsArr[index]);
+        playSound(gameSounds[index]);
       } else if (event === "mouseup") {
         let resetLight = () => element.classList.remove(lightColorsArr[index]);
         setTimeout(resetLight, 100);
@@ -94,7 +95,13 @@ const lightUp = (event, element, index) => {
 const blink = (element, index) => {
   element.classList.add(lightColorsArr[index]);
   let resetLight = () => element.classList.remove(lightColorsArr[index]);
-  setTimeout(resetLight, 500);
+  setTimeout(resetLight, 1000);
+}
+
+const blinkDisplay = () => {
+  countDisplay.style.color = "#47000B";
+  let resetLight = () => countDisplay.style.color = "rgb(230, 81, 104)";
+  setTimeout(resetLight, 1000);
 }
 
 const flashing = (arr, element) => {
@@ -103,27 +110,43 @@ const flashing = (arr, element) => {
     id = arr[value];
     // console.log("Assign to id:", id);
     blink(element[id], id);
+    playSound(gameSounds[id]);
     value++;
     // console.log("Value amount is:", value)
     if (value === arr.length) {
       clearInterval(myInterval);
     }
-  }, 1000)
+  }, 1500)
 }
 
-const playSound = () => {
-  
+const playSound = (url) => {
+  let audio = new Audio(url);
+  audio.play();
 }
+
+// const errorSound = (url1, url2) => {
+//   let audio1 = new Audio(url1);
+//   audio1.play();
+//   let audio2 = new Audio(url2);
+//   audio2.play();
+// }
 
 const compareArrays = () => {
   if (powerOff === 0) {
     console.log("Go away, I'm sleeping...");
-    return false;
+    return;
   }
-  else if (playCount === gameLimit) {
-    console.log("No more games. compareArrays");
-    return false;
-  } else if (aiSeq.length === playerSeq.length) {
+  else if (playCount === gameLimit 
+    && aiSeq.length === playerSeq.length 
+    && JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
+      console.log("Winner, winner, chicken dinner!");
+      return;
+    }
+  // else if (playCount === gameLimit) {
+  //   console.log("No more games. compareArrays");
+  //   return;
+  // } 
+  else if (aiSeq.length === playerSeq.length) {
     // const promise = new Promise((resolve, reject) => {
       if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
         // playCount++;
