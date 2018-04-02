@@ -11,6 +11,7 @@ var aiSeq = [],
  yellow = document.getElementById('yellow'),
  blue = document.getElementById('blue'),
  brutalIndicator = document.getElementById('brutal-indicator'),
+ brutalMode = 0,
  countDisplay = document.getElementById('count-display'),
  startButton = document.getElementById('start-btn'),
  brutalButton = document.getElementById('brutal-btn'),
@@ -239,6 +240,18 @@ const seqInput = (arr, num) => {
     }
 }
 
+const toggleBrutalMode = () => {
+  if (brutalMode === 0) {
+    console.log("Switching to brutal mode...");
+    brutalIndicator.style.backgroundColor = "red";
+    brutalMode = 1;
+  } else if (brutalMode === 1) {
+    console.log("Whew! Deactivate brutal mode.");
+    brutalIndicator.style.backgroundColor = "black";
+    brutalMode = 0;
+  }
+}
+
 const togglePower = () => {
   if (powerOff === 0) {
     powerButton.style.background = "linear-gradient(to right, black 50%, #1F8EE0 50%)";
@@ -278,11 +291,13 @@ const togglePower = () => {
     blue.addEventListener("mouseup", blueLight2);
 
     startButton.addEventListener("click", startGame);
+    brutalButton.addEventListener("click", toggleBrutalMode);
 
   } else if (powerOff === 1) {
       resetArray(aiSeq);
       resetArray(playerSeq);
       playCount = 0;
+      brutalMode = 0;
       powerButton.style.background = "linear-gradient(to right, #1F8EE0 50%, black 50%)";
       countDisplay.style.color = "#47000B";
       countDisplay.innerHTML = "- -";
@@ -309,6 +324,7 @@ const togglePower = () => {
       blue.removeEventListener("mouseup", blueLight2);
 
       startButton.removeEventListener("click", startGame);
+      brutalButton.removeEventListener("click", toggleBrutalMode);
     }
 }
  
