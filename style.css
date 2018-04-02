@@ -85,7 +85,8 @@ html, body {
   top: 50%;
   left: 50%;
   margin: -24.66% 0 0 -22.66%;
-  background-color: white;
+  background: linear-gradient(45deg, rgba(192,192,192,1) 0%, 
+  rgba(255,255,255,1) 50%, rgba(128,128,128,1) 100%); /* w3c */
   width: 226px;
   height: 226px;
   border-radius: 50%;
