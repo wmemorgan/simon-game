@@ -107,9 +107,11 @@ const displayMessage = (message) => {
   setTimeout(resetLight, 400);
 }
 
+
 const gameWon = () => {
   displayMessage("WIN!");
   for (let i = 0; i < lens.length; i++) {
+    // lens[i].classList.add('blink-lens');
     blink(lens[i], i);
     playSound(gameSounds[i]);
   }
@@ -184,6 +186,10 @@ const compareArrays = () => {
 
 const resetArray = (arr) => {
   arr.length = 0;
+  for (let i = 0; i < lens.length; i++) {
+    lens[i].classList.remove('blink-lens');
+
+  }
 }
 
 const timeUp = (eval) => {
@@ -282,6 +288,11 @@ const togglePower = () => {
       countDisplay.innerHTML = "- -";
       console.log("Power off");
       powerOff = 0;
+
+    for (let i = 0; i < lens.length; i++) {
+      lens[i].classList.remove('blink');
+  
+    }
 
       green.removeEventListener("click", seqInputGreen);
       red.removeEventListener("click", seqInputRed);
