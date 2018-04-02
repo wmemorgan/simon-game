@@ -2,9 +2,9 @@ var aiSeq = [],
  playerSeq = [],
  level = 0,
  playCount,
- gameLimit = 5,
+ gameLimit = 20,
  powerOff = 0,
- timer,
+ duration = 2000,
  lens = document.getElementsByClassName('lens'),
  green = document.getElementById('green'),
  red = document.getElementById('red'),
@@ -133,7 +133,7 @@ const flashing = (arr, element) => {
     if (value === arr.length) {
       clearInterval(myInterval);
     }
-  }, 1500)
+  }, duration)
 }
 
 const playSound = (url) => {
@@ -169,7 +169,7 @@ const compareArrays = () => {
       if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
         // playCount++;
         createSequence(aiSeq);
-        flashing(aiSeq, lens);
+        flashing(aiSeq, lens, 3000);
         // resolve(console.log('They are equal!'));
       } else {
         if (brutalMode === 1) {
@@ -177,12 +177,12 @@ const compareArrays = () => {
           console.log('Crap!')
           console.log("Sorry dude, Simon is starting over...", aiSeq);
           displayMessage("Err");
-          flashing(aiSeq, lens);
+          flashing(aiSeq, lens, 1000);
         } else {
           console.log('Not equal')
           console.log("Let's try again, Simon says:", aiSeq);
           displayMessage("Err");
-          flashing(aiSeq, lens);
+          flashing(aiSeq, lens, 2000);
         }
         // reject(console.log("Let's try again, Simon says:", aiSeq));
       }
@@ -232,6 +232,19 @@ const gamePlay = () => {
   } else {
     playCount = aiSeq.length;
     countDisplay.innerHTML = aiSeq.length;
+    switch (true) {
+      case playCount === 5:
+        duration -= 500;
+        break;
+      case playCount === 9:
+        duration -= 1000;
+        break;
+      case playCount === 13:
+        duration -= 1500;
+        break;
+      default:
+        duration;
+    }
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
     compareArrays();
