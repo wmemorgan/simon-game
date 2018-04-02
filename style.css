@@ -26,6 +26,18 @@ html, body {
   border: 15px solid #333333;
   cursor: pointer;
   z-index: 1;
+
+}
+
+.blink-lens {
+  animation-name: blink ;
+  animation-duration: 2s;
+}
+
+@keyframes blink {    
+    0%  {opacity: 1;}
+    50%  {opacity: 0;}
+    100% {opacity: 1;}
 }
 
 #green {
@@ -61,6 +73,8 @@ html, body {
 .liteBlue#blue {
     background-color: #4360ee;
 }
+
+
 
 #game-menu {
   position: absolute;
@@ -179,36 +193,36 @@ text-align: center;
 
 @media (max-width: 450px) {
   #game-board {
-    width: 300px;
-    height: 300px;
-    grid-template-columns: repeat(2, 100px);
+    width: 350px;
+    height: 350px;
+    grid-template-columns: repeat(2, 150px);
   }
   .lens {
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border: 10px solid #333333;
   }
 
   #green {
-    border-radius: 110px 0 0 0;
+    border-radius: 160px 0 0 0;
   }
   #red {
-    border-radius: 0 110px 0 0;
+    border-radius: 0 160px 0 0;
   }
   #yellow {
-    border-radius: 0 0 0 110px;
+    border-radius: 0 0 0 160px;
   }
   #blue {
-    border-radius: 0 0 110px 0;
+    border-radius: 0 0 160px 0;
   }
 
   #game-menu {
-    width: 113px;
-    height: 113px;
+    width: 163px;
+    height: 163px;
     position: absolute;
     top: 50%;
     left: 50%;
-    margin: -23.33% 0 0 -19.33%;
+    margin: -27.33% 0 0 -24.33%;
   }
 
   .heading {
@@ -220,7 +234,7 @@ text-align: center;
 }
 
   sup {
-    font-size: 8pt;
+    font-size: 9pt;
   }
 
   .menu-option {
@@ -281,9 +295,9 @@ text-align: center;
 
   #power-btn {
     /* grid-column: 2 / span 2; */
-    width: 100%;
+    width: 55%;
     /* align-self: auto; */
-    background: linear-gradient(to right,  #1F8EE0 50%,black 50%); /* W3C */
+    background: linear-gradient(to right,  #1F8EE0 70%,black 30%); /* W3C */
     border: 5px solid black;
     padding-left: 5px;
     padding-right: 5px;
