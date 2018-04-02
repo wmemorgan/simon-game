@@ -118,12 +118,12 @@ const compareArrays = () => {
     return false;
   }
   else if (playCount === gameLimit) {
-    console.log("No more games");
+    console.log("No more games. compareArrays");
     return false;
   } else if (aiSeq.length === playerSeq.length) {
     // const promise = new Promise((resolve, reject) => {
       if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
-        playCount++;
+        // playCount++;
         createSequence(aiSeq);
         flashing(aiSeq, lens);
         // resolve(console.log('They are equal!'));
@@ -152,11 +152,18 @@ const timeUp = (eval) => {
 }
 
 const startGame = () => {
-  console.log("Starting game....")
-  // var startUp = setTimeout()
-  createSequence(aiSeq);
-  gamePlay();
+  if (powerOff === 0) {
+    console.log("I'm sleeping...");
+    return false;
+  } else {
+    console.log("Starting game....")
+    // var startUp = setTimeout()
+    createSequence(aiSeq);
+    flashing(aiSeq, lens);
+    gamePlay();
+  }
 }
+
 
 const gamePlay = () => {
   if (powerOff === 0) {
@@ -164,20 +171,14 @@ const gamePlay = () => {
     return false;
   } else if (playCount === gameLimit) {
     console.log("Game over, man!");
-    return true;
+    return false;
   } else {
+    playCount = aiSeq.length;
     countDisplay.innerHTML = aiSeq.length;
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
-    // timer = setTimeout(compareArrays, 100000000);
-    // for (let i = 0; i < lens.length; i++) {
-    //   lens[i].onclick = function () {
-    //     timer && clearTimeout(timer);
-    //     timer = setTimeout(compareArrays, 3000);
-    //   }
-    // }
     compareArrays();
-
+    
   } 
 }
 
@@ -232,6 +233,7 @@ const togglePower = () => {
   } else if (powerOff === 1) {
       resetArray(aiSeq);
       resetArray(playerSeq);
+      playCount = 0;
       powerButton.style.background = "linear-gradient(to right, #1F8EE0 50%, black 50%)";
       countDisplay.style.color = "#47000B";
       countDisplay.innerHTML = "- -";
