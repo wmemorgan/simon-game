@@ -45,7 +45,7 @@ html, body {
 }
 
 #green {
-  background-color: rgb(0, 127, 0);
+  background-color: #00B04E;
   border-radius: 210px 0 0 0;
   border-bottom: 5px;
 }
@@ -54,7 +54,7 @@ html, body {
 }
 
 #red {
-  background-color: rgb(255, 0, 0);
+  background-color: #A80000;
   border-radius: 0 210px 0 0;
   border-bottom: 5px;
 }
@@ -63,7 +63,7 @@ html, body {
 }
 
 #yellow {
-  background-color: rgb(255, 255, 0);
+  background-color: #CEAA00;
   border-radius: 0 0 0 210px;
 }
 .liteYell#yellow {
@@ -71,7 +71,7 @@ html, body {
 }
 
 #blue {
-  background-color: rgb(0, 0, 255);
+  background-color: #084390;
   border-radius: 0 0 210px 0;
 }
 .liteBlue#blue {
