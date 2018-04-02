@@ -172,11 +172,18 @@ const compareArrays = () => {
         flashing(aiSeq, lens);
         // resolve(console.log('They are equal!'));
       } else {
-        console.log('Not equal')
-        console.log("Let's try again, Simon says:", aiSeq);
-        displayMessage("Err");;
-        flashing(aiSeq, lens);
-        
+        if (brutalMode === 1) {
+          resetArray(aiSeq);
+          console.log('Crap!')
+          console.log("Sorry dude, Simon is starting over...", aiSeq);
+          displayMessage("Err");
+          flashing(aiSeq, lens);
+        } else {
+          console.log('Not equal')
+          console.log("Let's try again, Simon says:", aiSeq);
+          displayMessage("Err");
+          flashing(aiSeq, lens);
+        }
         // reject(console.log("Let's try again, Simon says:", aiSeq));
       }
       gamePlay();
