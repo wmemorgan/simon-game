@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+
 html, body {
   background: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/purty_wood.png");
   height: 100%;
   display: grid;
+  
 }
 
 #game-board {
@@ -72,6 +75,8 @@ html, body {
 }
 
 #game-menu {
+  font-family: Arial, Helvetica, sans-serif;
+  text-transform: uppercase;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -93,7 +98,8 @@ html, body {
 }
 
 .heading {
-  font-size: 4em;
+  font-family: 'Monoton', cursive;
+  font-size: 3em;
   margin: auto;
   padding-bottom: 2px;
   grid-column: 1 / span 3;
@@ -106,6 +112,10 @@ sup {
 .menu-option {
   border: 5px solid #333333;
 }
+
+ .menu-label, .power-label {
+    font-size: 0.6em;
+  }
 
 #brutal-indicator {
   background-color: black;
@@ -284,5 +294,4 @@ text-align: center;
     padding-right: 5px;
     cursor: pointer;
   }
-
 }
