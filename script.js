@@ -85,9 +85,11 @@ const gameWon = () => {
 }
 
 const flashing = (arr, element) => {
-  let value = 0;
-  const myInterval = setInterval(() => {
-    countDisplay.innerHTML = aiSeq.length;
+  //This section of code is based on George Luis' tutorial 
+  //@ https://youtu.be/9MTR3V2XpRI
+  let value = 0; 
+  const myInterval = setInterval(() => { 
+    countDisplay.innerHTML = aiSeq.length; 
     id = arr[value];
     blink(element[id], id);
     playSound(gameSounds[id]);
@@ -108,7 +110,7 @@ const errorSound = () => {
   audio.play();
 }
 
-const compareArrays = () => {
+const compareSequence = () => {
   if (powerOff === 0) {
     console.log("Go away, I'm sleeping...");
     return;
@@ -142,6 +144,16 @@ const compareArrays = () => {
       gamePlay();
   }
 }
+//This section of code is based on George Luis' tutorial 
+//@ https://youtu.be/9MTR3V2XpRI
+const checkPlayerSeq = () => {
+  for (let i = 0; i < playerSeq.length; i++) {
+    if (playerSeq[i] != aiSeq[i]) {
+      return false;
+    }
+  }
+  return true;
+}
 
 const resetArray = (arr) => {
   arr.length = 0;
@@ -153,7 +165,7 @@ const resetArray = (arr) => {
 
 const timeUp = (eval) => {
   if (eval) {
-    compareArrays(aiSeq, playerSeq);
+    compareSequence(aiSeq, playerSeq);
   } else {
     console.log('Ran out of time do over...');
   }
@@ -181,7 +193,6 @@ const gamePlay = () => {
   } else {
     playCount = aiSeq.length;
     countDisplay.innerHTML = aiSeq.length;
-
     // Speed the game pace as the player goes further along
     switch (true) {
       case playCount === 5:
@@ -198,15 +209,23 @@ const gamePlay = () => {
     }
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
-    compareArrays();
-  } 
+    compareSequence();
+    } 
 }
 
 const seqInput = (arr, num) => {
     return () => {
       arr.push(num);
-      console.log("Player array is:", arr);
-      compareArrays();
+      if (!checkPlayerSeq()) {
+        errorSound();
+        console.log("Oops! Try again, Simon says:", aiSeq);
+        displayMessage("Err");
+        resetArray(playerSeq);
+        flashing(aiSeq, lens, 2000);
+      } else {
+        console.log("Player array is:", arr);
+        compareSequence();
+      }
     }
 }
 
