@@ -34,48 +34,10 @@ const createSequence = (arr) => {
     console.log("Game over, man!");
     return true;
   } else {
-    // return new Promise (resolve => {
-      // setTimeout(() => {
       arr.push(randomNumGenerator());
-      // arr.push(0, 2, 1)
-      // flashing(aiSeq, lens);
       console.log("Random generated array is:", arr);
-      // }, 500);
-    //   return resolve;
-    // });
-    // (reject => {console.log("I'm afraid I can't do that.")});
     }
 }
-
-
-// const seqInput = (arr, index) => {
-//   return () => {
-//     // if (powerOff === 0) {
-//     //   lens[index].removeEventListener("click", seqInput(arr, index));
-//     // } else {
-//         // new Promise (resolve => {
-//         //   console.log("The index is:", index);
-//         //   arr.push(index);
-//         //   console.log("The array is:", arr);
-//         // });
-//         // (reject => {console.log("I won't do that!")});
-
-//           // const promise = Promise.resolve(addToArray(arr, index));
-//             // reject(console.log("I won't do that!"));
-//           // const promise = Promise.resolve("Success").then(() => {
-//               arr.push(index);
-//               console.log("Player array is:", arr);
-//           // });
-//       // }
-//     }
-// }
-
-// const addToArray = (arr, index) => {
-//   arr.push(index);
-//   console.log("Player array is:", arr);
-// }
-
-
 
 const lightUp = (event, element, index) => {
   return () => {
@@ -120,16 +82,13 @@ const gameWon = () => {
 }
 
 const flashing = (arr, element) => {
-  
   let value = 0;
   const myInterval = setInterval(() => {
     countDisplay.innerHTML = aiSeq.length;
     id = arr[value];
-    // console.log("Assign to id:", id);
     blink(element[id], id);
     playSound(gameSounds[id]);
     value++;
-    // console.log("Value amount is:", value)
     if (value === arr.length) {
       clearInterval(myInterval);
     }
@@ -141,41 +100,25 @@ const playSound = (url) => {
   audio.play();
 }
 
-// const errorSound = (url1, url2) => {
-//   let audio1 = new Audio(url1);
-//   audio1.play();
-//   let audio2 = new Audio(url2);
-//   audio2.play();
-// }
-
 const compareArrays = () => {
   if (powerOff === 0) {
     console.log("Go away, I'm sleeping...");
     return;
-  }
-  else if (playCount === gameLimit 
+  } else if (playCount === gameLimit 
     && aiSeq.length === playerSeq.length 
     && JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
       console.log("Winner, winner, chicken dinner!");
       gameWon();
       return;
-    }
-  // else if (playCount === gameLimit) {
-  //   console.log("No more games. compareArrays");
-  //   return;
-  // } 
-  else if (aiSeq.length === playerSeq.length) {
-    // const promise = new Promise((resolve, reject) => {
+    } else if (aiSeq.length === playerSeq.length) {
       if (JSON.stringify(aiSeq) === JSON.stringify(playerSeq)) {
-        // playCount++;
         createSequence(aiSeq);
         flashing(aiSeq, lens, 3000);
-        // resolve(console.log('They are equal!'));
       } else {
         if (brutalMode === 1) {
           resetArray(aiSeq);
           console.log('Crap!')
-          console.log("Sorry dude, Simon is starting over...", aiSeq);
+          console.log("Sorry dude, Simon says starting from the beginning...", aiSeq);
           displayMessage("Err");
           flashing(aiSeq, lens, 1000);
         } else {
@@ -184,20 +127,16 @@ const compareArrays = () => {
           displayMessage("Err");
           flashing(aiSeq, lens, 2000);
         }
-        // reject(console.log("Let's try again, Simon says:", aiSeq));
       }
       gamePlay();
-    // });
   }
-
 }
 
 const resetArray = (arr) => {
   arr.length = 0;
-  for (let i = 0; i < lens.length; i++) {
-    lens[i].classList.remove('blink-lens');
-
-  }
+  // for (let i = 0; i < lens.length; i++) {
+  //   lens[i].classList.remove('blink-lens');
+  // }
 }
 
 const timeUp = (eval) => {
@@ -214,13 +153,11 @@ const startGame = () => {
     return false;
   } else {
     console.log("Starting game....")
-    // var startUp = setTimeout()
     createSequence(aiSeq);
     flashing(aiSeq, lens);
     gamePlay();
   }
 }
-
 
 const gamePlay = () => {
   if (powerOff === 0) {
@@ -232,15 +169,17 @@ const gamePlay = () => {
   } else {
     playCount = aiSeq.length;
     countDisplay.innerHTML = aiSeq.length;
+
+    // Speed the game pace as the player goes further along
     switch (true) {
       case playCount === 5:
-        duration -= 500;
+        duration -= 300;
         break;
       case playCount === 9:
-        duration -= 1000;
+        duration -= 600;
         break;
       case playCount === 13:
-        duration -= 1500;
+        duration -= 900;
         break;
       default:
         duration;
@@ -248,7 +187,6 @@ const gamePlay = () => {
     resetArray(playerSeq);
     console.log("Simon says:", aiSeq);
     compareArrays();
-    
   } 
 }
 
@@ -295,7 +233,6 @@ const togglePower = () => {
     blueLight1 = lightUp("mousedown", blue, 3);
     blueLight2 = lightUp("mouseup", blue, 3);
 
-
     green.addEventListener("click", seqInputGreen);    
     red.addEventListener("click", seqInputRed);
     yellow.addEventListener("click", seqInputYellow);
@@ -324,11 +261,7 @@ const togglePower = () => {
       console.log("Power off");
       powerOff = 0;
 
-    for (let i = 0; i < lens.length; i++) {
-      lens[i].classList.remove('blink');
-  
-    }
-
+      // Remove event listeners from each unique ID
       green.removeEventListener("click", seqInputGreen);
       red.removeEventListener("click", seqInputRed);
       yellow.removeEventListener("click", seqInputYellow);
