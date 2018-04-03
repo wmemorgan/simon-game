@@ -4,7 +4,7 @@ var aiSeq = [],
  playCount,
  gameLimit = 20,
  powerOff = 0,
- duration = 2000,
+ duration = 1800,
  lens = document.getElementsByClassName('lens'),
  green = document.getElementById('green'),
  red = document.getElementById('red'),
@@ -56,9 +56,13 @@ const lightUp = (event, element, index) => {
 }
 
 const blink = (element, index) => {
-  element.classList.add(lightColorsArr[index]);
   let resetLight = () => element.classList.remove(lightColorsArr[index]);
-  setTimeout(resetLight, 1000);
+  if (powerOff === 0) {
+    clearTimeout(resetLight);
+  } else {
+    element.classList.add(lightColorsArr[index]);
+    setTimeout(resetLight, 1000);
+  }
 }
 
 const displayMessage = (message) => {
@@ -70,15 +74,14 @@ const displayMessage = (message) => {
   setTimeout(resetLight, 400);
 }
 
-
 const gameWon = () => {
   displayMessage("WIN!");
   for (let i = 0; i < lens.length; i++) {
+    // Alternate blink command
     // lens[i].classList.add('blink-lens');
     blink(lens[i], i);
     playSound(gameSounds[i]);
   }
-
 }
 
 const flashing = (arr, element) => {
@@ -134,6 +137,7 @@ const compareArrays = () => {
 
 const resetArray = (arr) => {
   arr.length = 0;
+  // Remove alternate blink class
   // for (let i = 0; i < lens.length; i++) {
   //   lens[i].classList.remove('blink-lens');
   // }
