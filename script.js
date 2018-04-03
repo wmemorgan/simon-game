@@ -103,6 +103,11 @@ const playSound = (url) => {
   audio.play();
 }
 
+const errorSound = () => {
+  let audio = new Audio("http://soundbible.com/mp3/Beep-SoundBible.com-923660219.mp3");
+  audio.play();
+}
+
 const compareArrays = () => {
   if (powerOff === 0) {
     console.log("Go away, I'm sleeping...");
@@ -118,16 +123,19 @@ const compareArrays = () => {
         createSequence(aiSeq);
         flashing(aiSeq, lens, 3000);
       } else {
+        
         if (brutalMode === 1) {
           resetArray(aiSeq);
           console.log('Crap!')
           console.log("Sorry dude, Simon says starting from the beginning...", aiSeq);
           displayMessage("Err");
+          errorSound();
           flashing(aiSeq, lens, 1000);
         } else {
           console.log('Not equal')
           console.log("Let's try again, Simon says:", aiSeq);
           displayMessage("Err");
+          errorSound();
           flashing(aiSeq, lens, 2000);
         }
       }
