@@ -1,5 +1,4 @@
 html, body {
-  /* width: 100%; */
   background: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/purty_wood.png");
   height: 100%;
   display: grid;
@@ -10,15 +9,11 @@ html, body {
   width: 500px;
   height: 500px;
   margin: auto;
-  /* margin-top: 50px; */
-  /* border: 3px solid black; */
-  /* border-radius: 50%; */
   display: grid;
   grid-template-columns: repeat(2, 200px);
   grid-gap: 0px;
   justify-content: center;
   align-content: center;
-  
 }
 
 .lens {
@@ -29,8 +24,6 @@ html, body {
   z-index: 1;
   box-shadow: 1px 1px 15px 1px rgba(0,0,0,0.85);
   box-shadow: inset -1px -1px 15px 2px rgba(0,0,0,0.55);
-  /* 1px 1px 1px 1px rgba(0,0,0,0.75); */
-
 }
 
 .blink-lens {
@@ -78,8 +71,6 @@ html, body {
     background-color: #4360ee;
 }
 
-
-
 #game-menu {
   position: absolute;
   top: 50%;
@@ -94,7 +85,6 @@ html, body {
   padding: 5px;
   display: grid;
   grid-template-columns: repeat(3 auto);
-  /* justify-content: space-evenly; */
   justify-content: stretch;
   align-content: center;
   align-items: center; 
@@ -107,7 +97,6 @@ html, body {
   margin: auto;
   padding-bottom: 2px;
   grid-column: 1 / span 3;
-  /* border: 1px solid black; */
 }
 
 sup {
@@ -129,7 +118,6 @@ sup {
 }
 
 #count-display {
-  /* color: rgb(230, 81, 104); */
   color: #47000B;
   font-size: 1.2em;
   font-weight: bolder;
@@ -171,9 +159,7 @@ sup {
 }
 
 #power-btn {
-  /* grid-column: 2 / span 2; */
   width: 100%;
-  /* align-self: auto; */
   background: linear-gradient(to right,  #1F8EE0 50%,black 50%); /* W3C */
   border: 2px solid black;
   padding-left: 5px;
@@ -181,19 +167,12 @@ sup {
   cursor: pointer;
 }
 
-/* .power-label {
-  padding:0px 10px 0px 10px;
-  text-align: right;
-} */
-
 #off-label {
 text-align: right;
-/* padding-right: 5px; */
 }
 
 #on-label {
 text-align: center;
-/* padding-left: 20px; */
 }
 
 @media (max-width: 450px) {
@@ -235,7 +214,6 @@ text-align: center;
   margin: auto;
   padding-bottom: 1px;
   grid-column: 1 / span 3;
-  /* border: 1px solid black; */
 }
 
   sup {
@@ -299,9 +277,7 @@ text-align: center;
   }
 
   #power-btn {
-    /* grid-column: 2 / span 2; */
     width: 55%;
-    /* align-self: auto; */
     background: linear-gradient(to right,  #1F8EE0 70%,black 30%); /* W3C */
     border: 5px solid black;
     padding-left: 5px;
